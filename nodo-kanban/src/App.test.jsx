@@ -59,4 +59,16 @@ describe('Aplicación Kanban Nodo', () => {
 
     expect(screen.queryByText('Landing page actualizada')).not.toBeInTheDocument();
   });
+
+  it('5. Muestra y actualiza el indicador de progreso en la barra superior', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    expect(screen.getByTestId('progress-badge')).toHaveTextContent('Progreso: 1/6 (17%)');
+
+    const statusSelect = screen.getByLabelText('Estado de Diseñar landing page');
+    await user.selectOptions(statusSelect, '2');
+
+    expect(screen.getByTestId('progress-badge')).toHaveTextContent('Progreso: 2/6 (33%)');
+  });
 });
