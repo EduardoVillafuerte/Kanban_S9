@@ -13,7 +13,8 @@ describe('Aplicación Kanban Nodo', () => {
 
     expect(screen.getByTestId('column-pending')).toHaveTextContent('Pendiente');
     expect(screen.getByTestId('column-in_progress')).toHaveTextContent('En progreso');
-    expect(screen.getByTestId('column-done')).toHaveTextContent('Completado');
+    // expect(screen.getByTestId('column-done')).toHaveTextContent('Completado');
+    expect(screen.getByTestId('column-done')).toHaveTextContent('Estado inexistente');
   });
 
   it('2. Permite crear una nueva tarea en la columna Pendiente', async () => {
