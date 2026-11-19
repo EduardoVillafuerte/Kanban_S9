@@ -50,6 +50,9 @@ export default function App() {
 
   const searchInputRef = useRef(null);
   const currentProject = projects[currentProjectIdx] || projects[0];
+  const totalTasks = currentProject.tasks.length;
+  const completedTasks = currentProject.tasks.filter((t) => t.status === 2).length;
+  const progressPercent = totalTasks ? Math.round((completedTasks / totalTasks) * 100) : 0;
 
   // Persistir cambios en localStorage
   useEffect(() => {
@@ -274,6 +277,10 @@ export default function App() {
         </nav>
 
         <span className="sp" />
+
+        <span className="tg" data-testid="progress-badge" style={{ padding: '4px 10px' }}>
+          Progreso: {completedTasks}/{totalTasks} ({progressPercent}%)
+        </span>
 
         <button onClick={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}>
           {theme === 'dark' ? '☀️ Claro' : '🌙 Oscuro'}
